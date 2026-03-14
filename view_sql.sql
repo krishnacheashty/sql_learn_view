@@ -9,14 +9,17 @@ CREATE VIEW Sales.V_MONTHLY_SUMMERY AS
 (
 	SELECT
 		DATETRUNC(month,O.orderDate) orderMonth,
-		SUM(O.Sales) TotalSales
-		--COUNT(O.OrderDate) TotalOrders
+		SUM(O.Sales) TotalSales,
+		COUNT(O.OrderDate) TotalOrders,
+		SUM(O.Quantity) TotalQuantities
 	FROM Sales.Orders AS O
 	group by DATETRUNC(month,orderDate)
 )
+GO
 
 SELECT 
 orderMonth,
-TotalSales
---SUM() OVER(ORDER BY OrderMonth) RunningTotal
+TotalSales,
+TotalQuantities,
+SUM(TotalSales) OVER(ORDER BY OrderMonth) RunningTotal
 FROM Sales.V_MONTHLY_SUMMERY
