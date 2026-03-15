@@ -1,22 +1,5 @@
 --task : provide view that combine details form orders,products,customer, and employees.
 
-/*
-SELECT 
-O.OrderID,
-O.OrderDate,
-O.Sales,
-O.Quantity,
-P.Product,
-P.Category,
-COALESCE(C.FirstName,'') + ' ' +COALESCE(C.LastName,'') AS CustomerFullName,
-C.Country CustomerCountry,
-COALESCE(E.FirstName,'') + ' ' +COALESCE(E.LastName,'') AS SalesFullName
-FROM Sales.Orders AS O
-LEFT JOIN Sales.Products AS P
-ON P.ProductID=O.ProductID
-LEFT JOIN Sales.Customers AS C
-ON C.CustomerID=O.CustomerID
-*/
 CREATE VIEW Sales.v_Order_Details as (
 	SELECT
 		O.OrderID,
